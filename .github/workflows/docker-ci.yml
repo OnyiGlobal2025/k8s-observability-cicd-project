@@ -27,7 +27,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -f app/Dockerfile -t $IMAGE_NAME:${{ github.sha }} -t $IMAGE_NAME:latest .
+          docker build -f app/Dockerfile -t $IMAGE_NAME:${{ github.sha }} -t $IMAGE_NAME:latest app
 
       - name: Trivy scan (fail on HIGH/CRITICAL)
         uses: aquasecurity/trivy-action@0.24.0
