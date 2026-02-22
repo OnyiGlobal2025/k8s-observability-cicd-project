@@ -15,14 +15,11 @@ jobs:
 
     defaults:
       run:
-        shell: powershell
+        shell: cmd
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Bypass Execution Policy (Process Only)
-        run: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -32,10 +29,10 @@ jobs:
 
       - name: Build Docker image
         run: |
-          Write-Host "Building image: $env:IMAGE_NAME"
-          docker build -f app/Dockerfile `
-            -t "$env:IMAGE_NAME:${{ github.sha }}" `
-            -t "$env:IMAGE_NAME:latest" `
+          echo Building image %IMAGE_NAME%
+          docker build -f app/Dockerfile ^
+            -t %IMAGE_NAME%:%GITHUB_SHA% ^
+            -t %IMAGE_NAME%:latest ^
             app
 
       - name: Run Trivy scan (Report Only)
@@ -50,13 +47,13 @@ jobs:
 
       - name: Push image to Docker Hub
         run: |
-          docker push "$env:IMAGE_NAME:${{ github.sha }}"
-          docker push "$env:IMAGE_NAME:latest"
+          docker push %IMAGE_NAME%:%GITHUB_SHA%
+          docker push %IMAGE_NAME%:latest
 
       - name: Deploy Locally (CD Step)
         run: |
-          Write-Host "Deploying latest container..."
-          docker stop observability-app -ErrorAction SilentlyContinue
-          docker rm observability-app -ErrorAction SilentlyContinue
-          docker pull "$env:IMAGE_NAME:latest"
-          docker run -d -p 5000:5000 --name observability-app "$env:IMAGE_NAME:latest"
+          echo Deploying container...
+          docker stop observability-app >nul 2>&1
+          docker rm observability-app >nul 2>&1
+          docker pull %IMAGE_NAME%:latest
+          docker run -d -p 5000:5000 --name observability-app %IMAGE_NAME%:latest
