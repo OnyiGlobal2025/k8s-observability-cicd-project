@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: crash-me
+  namespace: crash-test
+spec:
+  restartPolicy: Always
+  containers:
+  - name: app
+    image: busybox
+    command: ["sh", "-c", "echo crashing...; exit 1"]

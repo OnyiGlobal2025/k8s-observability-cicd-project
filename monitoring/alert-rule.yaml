@@ -1,0 +1,33 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: observability-cpu-alert
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+  - name: observability.rules
+    rules:
+    - alert: HighCPUUsage
+      expr: |
+        sum by (pod) (
+          rate(container_cpu_usage_seconds_total{namespace="default"}[30s])
+        ) * 100 > 10
+      for: 15s
+      labels:
+        severity: warning
+      annotations:
+        summary: "High CPU usage detected"
+        description: "Pod {{ $labels.pod }} CPU usage is above 10% for 15 seconds."
+    - alert: HighMemoryUsage
+      expr: |
+        sum by (pod) (
+          container_memory_working_set_bytes{namespace="default"}
+        ) > 200 * 1024 * 1024
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High Memory Usage detected"
+        description: "Container memory usage is above 200Mi for more than 1 minute."

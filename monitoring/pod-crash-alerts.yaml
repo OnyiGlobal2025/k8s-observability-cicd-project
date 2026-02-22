@@ -1,0 +1,28 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: pod-crash-alerts
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+  - name: pod-crash.rules
+    rules:
+    - alert: PodHighRestartRate
+      expr: increase(kube_pod_container_status_restarts_total[10m]) > 3
+      for: 2m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Pod restarting frequently"
+        description: "Pod {{ $labels.namespace }}/{{ $labels.pod }} container={{ $labels.container }} restarted >3 times in 10m."
+
+    - alert: PodCrashLoopBackOff
+      expr: kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff"} == 1
+      for: 2m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Pod CrashLoopBackOff"
+        description: "Pod {{ $labels.namespace }}/{{ $labels.pod }} container={{ $labels.container }} is in CrashLoopBackOff for 2m."
