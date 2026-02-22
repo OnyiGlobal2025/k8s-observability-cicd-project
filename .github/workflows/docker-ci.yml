@@ -27,6 +27,7 @@ jobs:
 
       - name: Build Docker image
         run: |
+          echo "IMAGE_NAME=$IMAGE_NAME"
           docker build -f app/Dockerfile -t $IMAGE_NAME:${{ github.sha }} -t $IMAGE_NAME:latest app
 
       - name: Trivy scan (fail on HIGH/CRITICAL)
