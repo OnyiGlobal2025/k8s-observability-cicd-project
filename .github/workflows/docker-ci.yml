@@ -1,4 +1,4 @@
-name: CI - Build, Scan (Trivy), Push to Docker Hub
+name: CI/CD - Build, Scan, Push, Deploy (Local)
 
 on:
   push:
@@ -10,7 +10,7 @@ env:
   IMAGE_NAME: onyiglobal/observability-app
 
 jobs:
-  build-scan-push:
+  build-scan-push-deploy:
     runs-on: self-hosted
 
     defaults:
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set Execution Policy (Process Only)
+      - name: Bypass Execution Policy (Process Only)
         run: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
       - name: Login to Docker Hub
@@ -52,3 +52,11 @@ jobs:
         run: |
           docker push "$env:IMAGE_NAME:${{ github.sha }}"
           docker push "$env:IMAGE_NAME:latest"
+
+      - name: Deploy Locally (CD Step)
+        run: |
+          Write-Host "Deploying latest container..."
+          docker stop observability-app -ErrorAction SilentlyContinue
+          docker rm observability-app -ErrorAction SilentlyContinue
+          docker pull "$env:IMAGE_NAME:latest"
+          docker run -d -p 5000:5000 --name observability-app "$env:IMAGE_NAME:latest"
