@@ -56,7 +56,9 @@ CrashLoopBackOff states
 
 Alerts transitioned correctly from:
 
+```
 Pending → Firing → Resolved
+```
 
 
 This validated:
@@ -96,8 +98,11 @@ Push secure image to Docker Hub
 
 
 ## Image Tagging Strategy
+
+```
 onyiglobal/observability-app:<commit_sha>
 onyiglobal/observability-app:latest
+```
 
 This ensures:
 
@@ -120,7 +125,9 @@ CD was implemented using a Windows self-hosted GitHub Actions runner.
 
 The runner was configured and executed in interactive mode using:
 
+```
 .\run.cmd
+```
 
 
 ## Deployment Flow
@@ -137,23 +144,30 @@ Pull latest image
 
 Redeploy application automatically
 
+
 Deployment command logic:
 
+```
 docker stop observability-app
 docker rm observability-app
 docker pull onyiglobal/observability-app:latest
 docker run -d -p 5000:5000 --name observability-app onyiglobal/observability-app:latest
+```
 
 
 ## Result
 
 Every commit now triggers:
 
+```
 Build → Scan → Push → Deploy
+```
 
 Application becomes accessible at:
 
+```
 http://localhost:5000
+```
 
 
 ## Key Learning
@@ -163,15 +177,19 @@ Continuous Deployment removes manual deployment friction and ensures consistent 
 
 ## Architecture Summary
 
+## Architecture Summary
+
+```
 Developer Push → GitHub → GitHub Actions Workflow
-                 ↓
-           Self-Hosted Runner (Windows)
-                 ↓
-        Docker Build & Security Scan
-                 ↓
-          Push to Docker Hub
-                 ↓
-         Pull & Redeploy Container
+                         ↓
+              Self-Hosted Runner (Windows)
+                         ↓
+             Docker Build & Security Scan
+                         ↓
+                  Push to Docker Hub
+                         ↓
+              Pull & Redeploy Container
+```
 
 
 ## Tech Stack
