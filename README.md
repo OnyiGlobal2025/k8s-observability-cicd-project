@@ -175,7 +175,6 @@ http://localhost:5000
 Continuous Deployment removes manual deployment friction and ensures consistent release automation.
 
 
-## Architecture Summary
 
 ## Architecture Summary
 
