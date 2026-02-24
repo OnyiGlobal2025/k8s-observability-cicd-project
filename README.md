@@ -160,7 +160,7 @@ docker run -d -p 5000:5000 --name observability-app onyiglobal/observability-app
 ```
 
 
-## ResultS
+## Results
 
 - Every commit now triggers:
 
