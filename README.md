@@ -31,6 +31,7 @@ Alertmanager – Alert routing
 
 Slack Integration – Real-time alert notifications
 
+![Grafana Dashboard](docs/screenshots/observability/grafana-dashboard-overview.png)
 
 ## Implemented Alerts
 
@@ -71,6 +72,7 @@ Alertmanager routing
 
 Slack notification delivery
 
+![CPU Alert](docs/screenshots/alerts/cpu-alert-firing.png)
 
 ## Key Learning
 
@@ -96,6 +98,7 @@ Scan image using Trivy (vulnerability scanning)
 
 Push secure image to Docker Hub
 
+![Pipeline Success](docs/screenshots/cicd/github-actions-success-1.png)
 
 ## Image Tagging Strategy
 
@@ -144,6 +147,8 @@ Pull latest image
 
 Redeploy application automatically
 
+![Pipeline Success](docs/screenshots/cicd/github-actions-success-2.png)
+
 
 Deployment command logic:
 
@@ -155,7 +160,7 @@ docker run -d -p 5000:5000 --name observability-app onyiglobal/observability-app
 ```
 
 
-## Result
+## ResultS
 
 Every commit now triggers:
 
