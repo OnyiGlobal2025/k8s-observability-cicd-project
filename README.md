@@ -5,17 +5,17 @@ This project demonstrates an end-to-end DevOps workflow that starts with Kuberne
 
 It showcases:
 
-Kubernetes monitoring using Prometheus & Grafana
+- Kubernetes monitoring using Prometheus & Grafana
 
-Real-time alerting via Alertmanager + Slack
+- Real-time alerting via Alertmanager + Slack
 
-CPU, memory, and pod crash detection
+- CPU, memory, and pod crash detection
 
-Secure container image build & scan
+- Secure container image build & scan
 
-Automated Docker image publishing
+- Automated Docker image publishing
 
-Continuous Deployment using a Windows self-hosted runner
+- Continuous Deployment using a Windows self-hosted runner
 
 This project focuses on visibility, reliability, security, and automation.
 
@@ -23,36 +23,36 @@ This project focuses on visibility, reliability, security, and automation.
 ##  Phase 1 — Observability & Monitoring (Kubernetes)
 ## Tools Used
 
-Prometheus – Metrics collection
+1. Prometheus – Metrics collection
 
-Grafana – Visualization dashboards
+2. Grafana – Visualization dashboards
 
-Alertmanager – Alert routing
+3. Alertmanager – Alert routing
 
-Slack Integration – Real-time alert notifications
+4. Slack Integration – Real-time alert notifications
 
 ![Grafana Dashboard](docs/screenshots/observability/grafana-dashboard-overview.png)
 
 ## Implemented Alerts
 
-High CPU usage
+- High CPU usage
 
-High memory usage
+- High memory usage
 
-Pod restart detection
+- Pod restart detection
 
-CrashLoopBackOff detection
+- CrashLoopBackOff detection
 
 
 ## What Was Tested
 
 To validate monitoring accuracy, pods were intentionally stressed to trigger:
 
-CPU alerts
+- CPU alerts
 
-Memory alerts
+- Memory alerts
 
-CrashLoopBackOff states
+- CrashLoopBackOff states
 
 
 Alerts transitioned correctly from:
@@ -64,13 +64,13 @@ Pending → Firing → Resolved
 
 This validated:
 
-Metric scraping accuracy
+- Metric scraping accuracy
 
-Alert rule correctness
+- Alert rule correctness
 
-Alertmanager routing
+- Alertmanager routing
 
-Slack notification delivery
+- Slack notification delivery
 
 ![CPU Alert](docs/screenshots/alerts/cpu-alert-firing.png)
 
@@ -82,21 +82,21 @@ It is about detecting and reacting to failure in real time.
 
 ## Phase 2 — Continuous Integration (CI)
 
-CI was implemented using GitHub Actions.
+- CI was implemented using GitHub Actions.
 
-CI Workflow Responsibilities
+- CI Workflow Responsibilities
 
-Build Docker image from application source
+- Build Docker image from application source
 
-Tag image using:
+- Tag image using:
 
-   Commit SHA
+   - Commit SHA
 
-   latest
+   - latest
 
-Scan image using Trivy (vulnerability scanning)
+- Scan image using Trivy (vulnerability scanning)
 
-Push secure image to Docker Hub
+- Push secure image to Docker Hub
 
 ![Pipeline Success](docs/screenshots/cicd/github-actions-success-1.png)
 
@@ -109,11 +109,11 @@ onyiglobal/observability-app:latest
 
 This ensures:
 
-Traceability
+1. Traceability
 
-Version control
+2. Version control
 
-Rollback capability
+3. Rollback capability
 
 
 ## Key Learning
@@ -124,9 +124,9 @@ Security scanning should be integrated into the pipeline — not added later.
 
 ## Phase 3 — Continuous Deployment (CD)
 
-CD was implemented using a Windows self-hosted GitHub Actions runner.
+- CD was implemented using a Windows self-hosted GitHub Actions runner.
 
-The runner was configured and executed in interactive mode using:
+- The runner was configured and executed in interactive mode using:
 
 ```
 .\run.cmd
@@ -137,15 +137,15 @@ The runner was configured and executed in interactive mode using:
 
 On every push to main:
 
-Build Docker image
+- Build Docker image
 
-Push image to Docker Hub
+- Push image to Docker Hub
 
-Stop running container (if exists)
+- Stop running container (if exists)
 
-Pull latest image
+- Pull latest image
 
-Redeploy application automatically
+- Redeploy application automatically
 
 ![Pipeline Success](docs/screenshots/cicd/github-actions-success-2.png)
 
@@ -162,13 +162,13 @@ docker run -d -p 5000:5000 --name observability-app onyiglobal/observability-app
 
 ## ResultS
 
-Every commit now triggers:
+- Every commit now triggers:
 
 ```
 Build → Scan → Push → Deploy
 ```
 
-Application becomes accessible at:
+- Application becomes accessible at:
 
 ```
 http://localhost:5000
@@ -198,55 +198,55 @@ Developer Push → GitHub → GitHub Actions Workflow
 
 ## Tech Stack
 
-Kubernetes
+- Kubernetes
 
-Prometheus
+- Prometheus
 
-Grafana
+- Grafana
 
-Alertmanager
+- Alertmanager
 
-Slack Webhooks
+- Slack Webhooks
 
-Docker
+- Docker
 
-GitHub Actions
+- GitHub Actions
 
-Trivy
+- Trivy
 
-Windows Self-Hosted Runner
+- Windows Self-Hosted Runner
 
 
 
 ## What This Project Demonstrates
 
-Kubernetes observability setup
+1. Kubernetes observability setup
 
-Alert rule creation and validation
+2. Alert rule creation and validation
 
-Real-time Slack alert routing
+3. Real-time Slack alert routing
 
-Docker image lifecycle management
+4. Docker image lifecycle management
 
-CI pipeline automation
+5. CI pipeline automation
 
-CD automation using self-hosted runner
+6. CD automation using self-hosted runner
 
-Debugging Windows vs Linux runner differences
+7. Debugging Windows vs Linux runner differences
 
-End-to-end DevOps workflow thinking
+8. End-to-end DevOps workflow thinking
 
 
 
 ## Future Enhancements
 
-Linux-based self-hosted runner (EC2)
+- Linux-based self-hosted runner (EC2)
 
-Production-grade deployment environment
+- Production-grade deployment environment
 
-Infrastructure as Code integration
+- Infrastructure as Code integration
 
-Kubernetes-based deployment automation
+- Kubernetes-based deployment automation
 
 
 
@@ -256,15 +256,15 @@ This project reinforced that DevOps is not about writing YAML files.
 
 It is about:
 
-Detecting failure
+- Detecting failure
 
-Securing builds
+- Securing builds
 
-Automating delivery
+- Automating delivery
 
-Debugging across environments
+- Debugging across environments
 
-Understanding systems end-to-end
+- Understanding systems end-to-end
 
 From observability to automated deployment, this project simulates real-world DevOps responsibilities across monitoring, security, CI, and CD.
 
