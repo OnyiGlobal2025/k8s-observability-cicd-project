@@ -31,6 +31,7 @@ This project focuses on visibility, reliability, security, and automation.
 
 4. Slack Integration – Real-time alert notifications
 
+
 - **Grafana dashboard overview**
 ![Grafana Dashboard](docs/screenshots/observability/grafana-dashboard-overview.png)
 
@@ -73,6 +74,7 @@ This validated:
 
 - Slack notification delivery
 
+
 - **CPU alert firing (Prometheus)**
 ![CPU Alert](docs/screenshots/alerts/cpu-alert-firing.png)
 
@@ -99,6 +101,7 @@ It is about detecting and reacting to failure in real time.
 - Scan image using Trivy (vulnerability scanning)
 
 - Push secure image to Docker Hub
+
 
 - **CI/CD pipeline 1 (Github actions)**
 ![Pipeline Success](docs/screenshots/cicd/github-actions-success-1.png)
@@ -149,6 +152,7 @@ On every push to main:
 - Pull latest image
 
 - Redeploy application automatically
+
 
 - **CI/CD Pipeline 2 (Github actions)**
 ![Pipeline Success](docs/screenshots/cicd/github-actions-success-2.png)
