@@ -1,4 +1,14 @@
 ##  Kubernetes Observability + CI/CD Automation Project
+
+![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
+![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=prometheus&logoColor=white)
+![Grafana](https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![Trivy](https://img.shields.io/badge/Trivy-1904DA?style=for-the-badge&logo=aquasec&logoColor=white)
+![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)
+![CI/CD](https://img.shields.io/badge/CI%2FCD-Fully_Automated-success?style=for-the-badge)
+
 ##  Overview
 
 This project demonstrates an end-to-end DevOps workflow that starts with Kubernetes observability and monitoring and evolves into a fully automated CI/CD pipeline with Docker and GitHub Actions.
